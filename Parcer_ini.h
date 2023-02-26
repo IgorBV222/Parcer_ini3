@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <chrono>
 #include "IParcer.h"
 
 
@@ -21,10 +22,10 @@ public:
 	void IfindSection(const std::string& find_section) override;
 
 	//Ключ в файле
-	void keyInFile(const std::string& find_key) override;
+	bool keyInFile(const std::string& find_key) override;
 
 	//Существует ли значение в файле
-	void valueInFile(const std::string& find_value) override;
+	bool valueInFile(const std::string& find_value) override;
 	
 	//Значение ключа в секции
 	void keyValueInSection(const std::string& section_name, const std::string& key_name) override;
@@ -33,7 +34,7 @@ public:
 	void keyValueReplacement(const std::string& section_name, const std::string& key_name, const std::string& value_newName) override;
 
 	//Запись парсера в файл
-	void writeToFile(const std::string& file_name) override;
+	const void writeToFile(const std::string& file_name) override;
 
 	//Вывод Парсера в консоль
 	void showParcer() override;
@@ -41,13 +42,6 @@ public:
 private:
 	
 	std::map <std::string, std::map < std::string, std::string>> _section;	
-	std::string _sectionTitle;
-	std::string _key;
-	std::string _value;
-
-	/*std::map <std::string, std::string> _parameterValues;
-	std::string _sectionTitle;
-	std::string _key;
-	std::string _value;*/	
+	
 };
 

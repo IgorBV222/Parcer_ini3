@@ -3,11 +3,9 @@
 #include <iostream>
 #include <memory> 
 #include <string>
+#include <chrono>
 #include "IParcer.h"
 #include "Parcer_ini.h"
-
-
-
 
 /*int main(int argc, char** argv) {
     //Аргументы командной строки
@@ -27,123 +25,151 @@
 }*/
 
 int main() {
-            
-    std::shared_ptr <IParcer> parser = std::make_shared<IParcer>();   
-    
+
+    /*std::shared_ptr <IParcer> parser = std::make_shared<Parcer_ini>();
+
     short answer;
     std::string key, section, value, pathFile;
 
-	std::cout << "\t\t\t   File Parser\n\t\t\t*****************\n\n";	
-    std::cin.ignore();
-    std::cout << "Enter the path to the file -> ";
+
+    std::cout << "\nEnter the path to the file -> ";
+   // std::cin.ignore();
     getline(std::cin, pathFile);
     system("cls");
     parser->IReaderFile(pathFile);
-    parser->showParcer();
+    parser->showParcer();*/
+    short answer;
 
-	do {
-		std::cout << "__________________________________________ \n";
-        std::cout << "What do you want to do?\n";
-		std::cout << "1.Find in which section the key is located.\n";
-		std::cout << "2.Check header existence.\n";
-		std::cout << "3.Check for the existence of a key.\n";
-		std::cout << "4.Check if a value exists.\n";
-		std::cout << "5.Find key value in section.\n";
-		std::cout << "6.Replace key value.\n";
-		std::cout << "7.Save data to file.\n";
-		std::cout << "0.To finish work.\n";		
-		std::cout << "___________________________________________\n";
-		std::cout << "\nEnter -> ";
-		std::cin >> answer;
-	} while (answer != 0 && answer != 1 && answer != 2 && answer != 3 && answer != 4 && answer != 5 && answer != 6 && answer != 7);
+    do {
 
-	system("cls");
-    switch (answer) {
+        std::shared_ptr <IParcer> parser = std::make_shared<Parcer_ini>();
 
-    case 0:
-    {
-        std::cout << "\n\n\nThank you for using the app" << '"' << "File Parser" << '"' << "\n\nExiting the program..." << '\n';
-    }
-    break;
+       
+        std::string key, section, value, pathFile;
 
-    case 1:
-    {
-        std::cin.ignore();
-        std::cout << "Enter key -> ";
-        getline(std::cin, key);
-        system("cls");
-        parser->IfindKey(key);
-        main();
-        break;
-    }
-    case 2:
-    {
-        std::cin.ignore();
-        std::cout << "Enter section name -> ";
-        getline(std::cin, section);
-        system("cls");
-        parser->IfindSection(section);
-        main();
-        break;
-    }
-    case 3:
-    {
-        std::cin.ignore();
-        std::cout << "Enter key -> ";
-        getline(std::cin, key);
-        system("cls");
-        parser->keyInFile(key);
-        main();
-        break;
-    }
-    case 4:
-    {
-        std::cin.ignore();
-        std::cout << "Enter value -> ";
-        getline(std::cin, value);
-        system("cls");
-        parser->valueInFile(value);
-        main();
-        break;
-    }
-    case 5:
-    {
-        std::cin.ignore();
-        std::cout << "Enter section name -> ";
-        getline(std::cin, section);
-        std::cout << "Enter key -> ";
-        getline(std::cin, key);
-        system("cls");
-        parser->keyValueInSection(section, key);
-        main();
-        break;
-    }
-    case 6:
-    {
-        std::cin.ignore();
-        std::cout << "Enter section name -> ";
-        getline(std::cin, section);
-        std::cout << "Enter key -> ";
-        getline(std::cin, key);
-        std::cout << "Enter value -> ";
-        getline(std::cin, value);
-        system("cls");
-        parser->keyValueReplacement(section, key, value);
-        main();
-        break;
-    }
-    case 7:
-    {
-        std::cin.ignore();
-        std::cout << "Enter the path to the file to write -> ";
+        std::cout << "\nEnter the path to the file -> ";
+        // std::cin.ignore();
         getline(std::cin, pathFile);
         system("cls");
-        parser->writeToFile(pathFile);
-        main();
-        break;
-    }
+        parser->IReaderFile(pathFile);
+        parser->showParcer();
 
-    }
+
+
+
+        std::cout << "\t\t\t   File Parser\n\t\t\t*****************\n\n";
+        std::cout << "__________________________________________ \n";
+        std::cout << "What do you want to do?\n";
+        std::cout << "1.Find in which section the key is located.\n";
+        std::cout << "2.Check header existence.\n";
+        std::cout << "3.Check for the existence of a key.\n";
+        std::cout << "4.Check if a value exists.\n";
+        std::cout << "5.Find key value in section.\n";
+        std::cout << "6.Replace key value.\n";
+        std::cout << "7.Save data to file.\n";
+        std::cout << "0.To finish work.\n";
+        std::cout << "___________________________________________\n";
+        std::cout << "\nEnter -> ";
+        std::cin >> answer;
+        //} while (answer != 0 && answer != 1 && answer != 2 && answer != 3 && answer != 4 && answer != 5 && answer != 6 && answer != 7);
+
+        system("cls");
+        switch (answer) {
+
+        case 0:
+        {
+            std::cout << "\n\nThank you for using the app" << '"' << "File Parser" << '"' << "\n\Exiting the program..." << '\n';
+        }
+        break;
+
+        case 1:
+        {
+            std::cin.ignore();
+            std::cout << "Enter key -> ";
+            getline(std::cin, key);
+            system("cls");
+            parser->IfindKey(key);
+            system("pause");
+            main();
+            break;
+        }
+        case 2:
+        {
+            std::cin.ignore();
+            std::cout << "Enter section name -> ";
+            getline(std::cin, section);
+            system("cls");
+            parser->IfindSection(section);
+            std::chrono::milliseconds(3000);
+            system("pause");
+            main();
+            break;
+        }
+        case 3:
+        {
+            std::cin.ignore();
+            std::cout << "Enter key -> ";
+            getline(std::cin, key);
+            system("cls");
+            parser->keyInFile(key);
+            system("pause");
+            main();
+            break;
+        }
+        case 4:
+        {
+            std::cin.ignore();
+            std::cout << "Enter value -> ";
+            getline(std::cin, value);
+            system("cls");
+            parser->valueInFile(value);
+            system("pause");
+            main();
+            break;
+        }
+        case 5:
+        {
+            std::cin.ignore();
+            std::cout << "Enter section name -> ";
+            getline(std::cin, section);
+            std::cout << "Enter key -> ";
+            getline(std::cin, key);
+            system("cls");
+            parser->keyValueInSection(section, key);
+            system("pause");
+            main();
+            break;
+        }
+        case 6: 
+        {
+            std::cin.ignore();
+            std::cout << "Enter section name -> ";
+            getline(std::cin, section);
+            std::cout << "Enter key -> ";
+            getline(std::cin, key);
+            std::cout << "Enter value -> ";
+            getline(std::cin, value);
+            system("cls");
+            parser->keyValueReplacement(section, key, value);
+            system("pause");
+            main();
+            break;
+        }
+        case 7:
+        {
+            std::cin.ignore();
+            std::cout << "Enter the path to the file to write -> ";
+            getline(std::cin, pathFile);
+            system("cls");
+            parser->writeToFile(pathFile);
+            system("pause");
+           main();
+            break;
+        }
+        } break;
+
+
+    } while (answer != 0 && answer != 1 && answer != 2 && answer != 3 && answer != 4 && answer != 5 && answer != 6 && answer != 7);
     return 0;
 }
 
